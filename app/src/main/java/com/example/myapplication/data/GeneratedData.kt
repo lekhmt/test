@@ -5,7 +5,7 @@ import io.github.serpro69.kfaker.Faker
 fun generatedData(): List<String> {
     val res = mutableListOf<String>()
     val faker = Faker()
-    repeat(100) {
+    repeat(1000) {
         res.add(faker.name.nameWithMiddle())
     }
     return res
