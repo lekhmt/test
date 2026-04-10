@@ -13,7 +13,7 @@ class SimpleSearchApi : SearchApi {
     private val source = generatedData()
 
     override suspend fun search(query: String): List<String> {
-        delay(3.seconds)
+        delay(2.seconds)
         if (Random.nextInt(3) == 0) {
             throw RuntimeException("Сетевая ошибка")
         }
