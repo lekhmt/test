@@ -38,9 +38,10 @@ android {
 }
 
 dependencies {
-    implementation("io.github.serpro69:kotlin-faker:1.16.1")
+    implementation(libs.kotlin.faker)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)

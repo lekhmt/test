@@ -13,11 +13,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.data.MainViewModel
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
@@ -36,17 +35,15 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Main(modifier: Modifier, viewModel: MainViewModel = MainViewModel()) {
-    var query by remember { mutableStateOf("") }
+fun Main(modifier: Modifier, viewModel: MainViewModel = viewModel()) {
+    val query by viewModel.searchQuery.collectAsStateWithLifecycle()
+
     Column(modifier = modifier
         .fillMaxSize()
         .padding(16.dp)) {
         TextField(
             value = query,
-            onValueChange = {
-                query = it
-                viewModel.onQueryChange(it)
-            },
+            onValueChange = { viewModel.onQueryChange(it) },
             label = { Text("Поиск") },
             modifier = Modifier.fillMaxWidth(),
         )
